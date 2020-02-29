@@ -145,7 +145,7 @@ var users = JSON.parse(users)
     var bosalt
 
     function newbox() {
-        count = 8000
+        count = 200
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
@@ -184,9 +184,8 @@ var users = JSON.parse(users)
         }
 
         function gameover() {
-           console.log(xal)
-
-            users[current_user].newscore = xal;
+             if(users[current_user].usernamereg !== ''){
+                users[current_user].newscore = xal;
             localStorage.setItem("users", JSON.stringify(users));
             
             if (xal > parseInt(users[current_user].bestscore))
@@ -196,6 +195,7 @@ var users = JSON.parse(users)
             }
             users[current_user].totalscore = xal + parseInt(users[current_user].totalscore );
             localStorage.setItem("users", JSON.stringify(users)); 
+}
 
 
             // user = users[current_user_number].newscore = xal;
@@ -216,7 +216,7 @@ var users = JSON.parse(users)
             $('#haqqinda').hide()
             setInterval(() => {
                 window.location.href = 'index.html'
-            }, 3000);
+            }, 2000);
         }
 
         setInterval(() => {
