@@ -10,9 +10,12 @@ $(document).ready(function() {
     }
 
     var user = localStorage.getItem("username")
-var users = localStorage.getItem('users')
-users = JSON.parse(users)
-var raiting = []
+    var users = localStorage.getItem('users')
+    users = JSON.parse(users)
+    var firstgamer
+    var secondgamer
+    var threegamer
+    var raiting = []
     if (user !== null){
     for (i = 0 ; i < users.length;i++){
 
@@ -23,14 +26,32 @@ var raiting = []
     var current_user = i
     }
     raiting.push(users[i].bestscore)
-}
+    raiting.sort(function(a, b){return b - a});
 
-    var email = users[current_user].emailreg
+}
+console.log(raiting)
+
+    for (i = 0;i<users.length;i++){
+        if (users[i].bestscore === raiting[0]){
+            firstgamer = users[i].usernamereg
+            $('#firstgamer').text(firstgamer)
+            $('#firstgamerpoint').text(raiting[0])
+        }
+        if (users[i].bestscore === raiting[1]){
+            secondgamer = users[i].usernamereg
+            $('#secondgamer').text(secondgamer)
+            $('#secondgamerpoint').text(raiting[1])
+        }
+        if (users[i].bestscore === raiting[2]){
+            threegamer = users[i].usernamereg 
+            $('#threegamer').text(threegamer)
+            $('#threegamerpoint').text(raiting[2])
+        }
+    }
     var level = users[current_user].level
     var bestscore = users[current_user].bestscore
     var newscore = users[current_user].newscore
     var totalscore = users[current_user].totalscore
-  
     }
 
     var user = localStorage.getItem("username")
@@ -43,7 +64,6 @@ var raiting = []
         level = ' (Funksiya Passivdir)'
         $('#dovshan').css('height', '200px').css('width', '150px')
     }
-console.log(raiting.sort())
 
     function yoxlama(username, password, arr, email, level, bestscore, newscore, totalscore) {
         for (var i = 0; i < arr.length; i++) {
@@ -141,7 +161,7 @@ console.log(raiting.sort())
     var baloncssHeight
     var bosalt
     function newbox() {
-        count = 6000
+        count = 600
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
@@ -244,8 +264,8 @@ console.log(raiting.sort())
                     xalprint.animate({ opacity: '0.8' }, "slow");
                     xalprint.text(`${xal}`)
                     if (xal == 10) {
-                        var body = $('body')
-                        body.css('background-image', 'url(shekiller/level1.png)')
+                        // var body = $('body')
+                        // body.css('background-image', 'url(shekiller/level1.png)')
                     }
 
                 })
@@ -382,12 +402,12 @@ console.log(raiting.sort())
     }
     $('#gamestart').on('click', function() {
         $('.basla').show()
-        $('#level').text(`Level:${level}`)
-        $('#best_score').text(`Best Score:${bestscore}`)
-        $('#new_score').text(`Sonuncu Oyun Scoru:${newscore}`)
-        $('#total_score').text(`Umumi Toplanan Yumurtalar:${totalscore}`)
+        $('#level').text(`Level:  ${level}`)
+        $('#best_score').text(`Best Score:  ${bestscore}`)
+        $('#new_score').text(`Sonuncu Oyun Scoru:  ${newscore}`)
+        $('#total_score').text(`Umumi Toplanan Yumurtalar:  ${totalscore}`)
 
-        $('#usernames').text(`username:${username}`)
+        $('#usernames').text(`username:  ${username}`)
         $('.esas').hide()
         $('.helps').hide()
         $('#haqqindashow').hide()
