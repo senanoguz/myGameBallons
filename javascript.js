@@ -8,20 +8,23 @@ $(document).ready(function() {
             return JSON.parse(listregister)
         else return []
     }
+        var user = localStorage.getItem("username")
+    if (user === null){
+    arr.push({ usernamereg:'', passwordreg:'', level:'',emailreg:'', bestscore:'', newscore:'', totalscore:'' })
+    localStorage.setItem("users", JSON.stringify(arr))
+    }
 
-    var user = localStorage.getItem("username")
-console.log({user})
+
     var users = localStorage.getItem('users')
-    console.log(users)
 var users = JSON.parse(users)
 
-console.log(users)
 
     for (i = 0 ; i < users.length;i++){
-
     if(users[i].usernamereg === user){
     var current_user = i
-
+    }
+    if(users[i].usernamereg === ''){
+    var current_user = i
     }
 }
 
@@ -36,7 +39,7 @@ console.log(users)
     var username = user
     if (username === null || '')
         username = 'Qonaq'
-    if (bestscore === null && newscore === null && totalscore === null && level === null) {
+    if (bestscore === '' && newscore === '' && totalscore === '' && level === '') {
         bestscore = ' (Funksiya Passivdir)'
         newscore = ' (Funksiya Passivdir)'
         totalscore = ' (Funksiya Passivdir)'
@@ -211,6 +214,9 @@ console.log(users)
             $('#giris').text('Tekrar Oyna')
             $('#qeydiyyat').show()
             $('#haqqinda').hide()
+            setInterval(() => {
+                window.location.href = 'index.html'
+            }, 3000);
         }
 
         setInterval(() => {
