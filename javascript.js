@@ -142,7 +142,7 @@ console.log(users)
     var bosalt
 
     function newbox() {
-        count = 500
+        count = 8000
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
