@@ -144,7 +144,7 @@ var raiting = []
     var baloncssHeight
     var bosalt
     function newbox() {
-        count = 700
+        count = 6000
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
