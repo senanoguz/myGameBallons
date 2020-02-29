@@ -10,13 +10,27 @@ $(document).ready(function() {
     }
 
     var user = localStorage.getItem("username")
-    var email = localStorage.getItem("email")
-    var level = localStorage.getItem("level")
-    var bestscore = localStorage.getItem("bestscore")
-    var newscore = localStorage.getItem("newscore")
-    var totalscore = localStorage.getItem("totalscore")
+console.log({user})
     var users = localStorage.getItem('users')
+    console.log(users)
+var users = JSON.parse(users)
 
+console.log(users)
+
+    for (i = 0 ; i < users.length;i++){
+
+    if(users[i].usernamereg === user){
+    var current_user = i
+
+    }
+}
+
+    var email = users[current_user].emailreg
+    var level = users[current_user].level
+    var bestscore = users[current_user].bestscore
+    var newscore = users[current_user].newscore
+    var totalscore = users[current_user].totalscore
+  
 
     var user = localStorage.getItem("username")
     var username = user
@@ -43,40 +57,43 @@ $(document).ready(function() {
     }
     $('#btnregister').on('click', function() {
 
-        var username = $('#username').val()
-        var email = $('#email').val()
-        var password = $('#password').val()
-        var password2 = $('#password2').val()
-        var bestscore = '0'
-        var newscore = '0'
-        var totalscore = '0'
-        var level = '0'
+        var usernamereg = $('#username').val()
+        var emailreg = $('#email').val()
+        var passwordreg = $('#password').val()
+        var password2reg = $('#password2').val()
+        bestscore = '0'
+        newscore = '0'
+        totalscore = '0'
+        level = '0'
         if (username === '') {
 
             $('#tamam').css('display', 'block').addClass('alert alert-danger').text(`Xeta: Username bos ola bilmez`)
-        } else if (password === '') {
+        } else if (passwordreg === '') {
             $('#tamam').css('display', 'block').addClass('alert alert-danger').text(`Xeta: Password bos ola bilmez`)
 
-        } else if (password !== password2) {
+        } else if (passwordreg !== password2reg) {
             $('#tamam').css('display', 'block').addClass('alert alert-danger').text(`Xeta: Parollar bir birine uygun gelmir`)
 
-        } else if (username === '' || password === '' || password2 === '' || email === '' || bestscore === '' || newscore === '' || totalscore === '') {
+        } else if (usernamereg === '' || passwordreg === '' || password2reg === '' || emailreg === '' || bestscore === '' || newscore === '' || totalscore === '') {
             $('#tamam').css('display', 'block').addClass('alert alert-danger').text(`Xeta: * olan butun xanalari doldurmaq vacibdir`)
         } else {
-            a = yoxlama(username, password, arr, email, level, bestscore, newscore, totalscore)
+            a = yoxlama(usernamereg, passwordreg, arr, emailreg, level, bestscore, newscore, totalscore)
             if (a) {
                 $('#tamam').css('display', 'block').addClass('alert alert-danger').text(`Xeta: Ola bilsin ki username artiq qeydiyyatdan kecib basqa Username adi yoxlayin`)
             } else {
                 $('#tamam').removeClass('alert alert-danger')
-                localStorage.setItem("username", username)
-                localStorage.setItem("password", password)
-                localStorage.setItem("email", email)
+                localStorage.setItem("username", usernamereg)
+                localStorage.setItem("password", passwordreg)
+                localStorage.setItem("email", emailreg)
                 localStorage.setItem("bestscore", bestscore)
                 localStorage.setItem("totalscore", totalscore)
                 localStorage.setItem("newscore", newscore)
                 $('#tamam').css('display', 'block').addClass('alert alert-success').text('Qeydiyyat ugurla tamamlandi Esas Sehifeye yonlendirilirsiniz')
-                arr.push({ username, password, email, bestscore, newscore, totalscore })
+                arr.push({ usernamereg, passwordreg, level,emailreg, bestscore, newscore, totalscore })
                 localStorage.setItem("users", JSON.stringify(arr))
+                setInterval(() => {
+                        window.location.href = 'index.html'
+                }, 2000);
             }
         }
     })
@@ -125,7 +142,7 @@ $(document).ready(function() {
     var bosalt
 
     function newbox() {
-        count = 10000
+        count = 500
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
@@ -164,6 +181,20 @@ $(document).ready(function() {
         }
 
         function gameover() {
+           console.log(xal)
+
+            users[current_user].newscore = xal;
+            localStorage.setItem("users", JSON.stringify(users));
+            
+            if (xal > parseInt(users[current_user].bestscore))
+            {
+            users[current_user].bestscore = xal;
+            localStorage.setItem("users", JSON.stringify(users)); 
+            }
+            users[current_user].totalscore = xal + parseInt(users[current_user].totalscore );
+            localStorage.setItem("users", JSON.stringify(users)); 
+
+
             // user = users[current_user_number].newscore = xal;
             // console.log(xal)
             // localStorage.setItem("users", JSON.stringify(user));
