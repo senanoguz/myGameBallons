@@ -8,17 +8,12 @@ $(document).ready(function() {
             return JSON.parse(listregister)
         else return []
     }
-        var user = localStorage.getItem("username")
-    if (user === null){
-    arr.push({ usernamereg:'', passwordreg:'', level:'',emailreg:'', bestscore:'', newscore:'', totalscore:'' })
-    localStorage.setItem("users", JSON.stringify(arr))
-    }
 
-
-    var users = localStorage.getItem('users')
+    var user = localStorage.getItem("username")
+        var users = localStorage.getItem('users')
 var users = JSON.parse(users)
 var raiting = []
-
+    if (user !== null){
     for (i = 0 ; i < users.length;i++){
         console.log(users[i].bestscore)
     if(users[i].usernamereg === user){
@@ -29,7 +24,7 @@ var raiting = []
     }
     raiting.push(users[i].bestscore)
 }
-console.log(raiting.sort())
+
 
 
     var email = users[current_user].emailreg
@@ -38,12 +33,13 @@ console.log(raiting.sort())
     var newscore = users[current_user].newscore
     var totalscore = users[current_user].totalscore
   
+    }
+
+
 
     var user = localStorage.getItem("username")
     var username = user
-    if (username === null || '')
-        username = 'Qonaq'
-    if (bestscore === '' && newscore === '' && totalscore === '' && level === '') {
+    if (username === null){
         bestscore = ' (Funksiya Passivdir)'
         newscore = ' (Funksiya Passivdir)'
         totalscore = ' (Funksiya Passivdir)'
