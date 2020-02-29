@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     var arr = register()
-
+var current_user
     function register() {
         var listregister = localStorage.getItem('users')
         if (listregister)
@@ -16,42 +16,47 @@ $(document).ready(function() {
     var secondgamer
     var threegamer
     var raiting = []
+    // console.log(user)
     if (user !== null){
-    for (i = 0 ; i < users.length;i++){
+        
+        for (i = 0 ; i < users.length;i++)
+        {
 
-    if(users[i].usernamereg === user){
-    var current_user = i
-    }
-    if(users[i].usernamereg === ''){
-    var current_user = i
-    }
-    raiting.push(users[i].bestscore)
-    raiting.sort(function(a, b){return b - a});
+        if(users[i].username === user || users[i].usernamereg === user){
+        current_user = i
+        // console.log(users[i].usernamereg)
+        }
+        if(users[i].usernamereg === '' || users[i].username === ''){
+        current_user = i
 
-}
-console.log(raiting)
+        }
+        raiting.push(users[i].bestscore)
+        raiting.sort(function(a, b){return b - a});
 
-    for (i = 0;i<users.length;i++){
-        if (users[i].bestscore === raiting[0]){
-            firstgamer = users[i].usernamereg
-            $('#firstgamer').text(firstgamer)
-            $('#firstgamerpoint').text(raiting[0])
-        }
-        if (users[i].bestscore === raiting[1]){
-            secondgamer = users[i].usernamereg
-            $('#secondgamer').text(secondgamer)
-            $('#secondgamerpoint').text(raiting[1])
-        }
-        if (users[i].bestscore === raiting[2]){
-            threegamer = users[i].usernamereg 
-            $('#threegamer').text(threegamer)
-            $('#threegamerpoint').text(raiting[2])
-        }
     }
-    var level = users[current_user].level
-    var bestscore = users[current_user].bestscore
-    var newscore = users[current_user].newscore
-    var totalscore = users[current_user].totalscore
+
+        for (i = 0;i<users.length;i++){
+            if (users[i].bestscore === raiting[0]){
+                firstgamer = users[i].username
+                $('#firstgamer').text(firstgamer)
+                $('#firstgamerpoint').text(raiting[0])
+            }
+            if (users[i].bestscore === raiting[1]){
+                secondgamer = users[i].username
+                $('#secondgamer').text(secondgamer)
+                $('#secondgamerpoint').text(raiting[1])
+            }
+            if (users[i].bestscore === raiting[2]){
+                threegamer = users[i].username 
+                $('#threegamer').text(threegamer)
+                $('#threegamerpoint').text(raiting[2])
+            }
+        }
+        // console.log(raiting)
+        var level = users[current_user].level
+        var bestscore = users[current_user].bestscore
+        var newscore = users[current_user].newscore
+        var totalscore = users[current_user].totalscore
     }
 
     var user = localStorage.getItem("username")
@@ -161,7 +166,7 @@ console.log(raiting)
     var baloncssHeight
     var bosalt
     function newbox() {
-        count = 600
+        count = 6000
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
@@ -197,20 +202,22 @@ console.log(raiting)
             }
             count--;
             document.getElementById("vaxt").innerHTML = count / 100 + " s";
+            
         }
 
         function gameover() {
-             if(users[current_user].usernamereg !== ''){
-                users[current_user].newscore = xal;
-            localStorage.setItem("users", JSON.stringify(users));
-            
-            if (xal > parseInt(users[current_user].bestscore))
-            {
-            users[current_user].bestscore = xal;
-            localStorage.setItem("users", JSON.stringify(users)); 
-            }
-            users[current_user].totalscore = xal + parseInt(users[current_user].totalscore );
-            localStorage.setItem("users", JSON.stringify(users)); 
+             if(user !== '')
+             {
+                    users[current_user].newscore = xal;
+                localStorage.setItem("users", JSON.stringify(users));
+                
+                if (xal > parseInt(users[current_user].bestscore))
+                {
+                users[current_user].bestscore = xal;
+                localStorage.setItem("users", JSON.stringify(users)); 
+                }
+                users[current_user].totalscore = xal + parseInt(users[current_user].totalscore );
+                localStorage.setItem("users", JSON.stringify(users)); 
 }
 
 
