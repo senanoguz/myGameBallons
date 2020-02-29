@@ -17,16 +17,20 @@ $(document).ready(function() {
 
     var users = localStorage.getItem('users')
 var users = JSON.parse(users)
-
+var raiting = []
 
     for (i = 0 ; i < users.length;i++){
+        console.log(users[i].bestscore)
     if(users[i].usernamereg === user){
     var current_user = i
     }
     if(users[i].usernamereg === ''){
     var current_user = i
     }
+    raiting.push(users[i].bestscore)
 }
+console.log(raiting.sort())
+
 
     var email = users[current_user].emailreg
     var level = users[current_user].level
@@ -64,10 +68,10 @@ var users = JSON.parse(users)
         var emailreg = $('#email').val()
         var passwordreg = $('#password').val()
         var password2reg = $('#password2').val()
-        bestscore = '0'
-        newscore = '0'
-        totalscore = '0'
-        level = '0'
+        bestscore = 0
+        newscore = 0
+        totalscore = 0
+        level = 0
         if (username === '') {
 
             $('#tamam').css('display', 'block').addClass('alert alert-danger').text(`Xeta: Username bos ola bilmez`)
@@ -143,9 +147,8 @@ var users = JSON.parse(users)
     var baloncssWidth
     var baloncssHeight
     var bosalt
-
     function newbox() {
-        count = 7000
+        count = 700
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
