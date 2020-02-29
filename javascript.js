@@ -40,6 +40,7 @@ var raiting = []
     var user = localStorage.getItem("username")
     var username = user
     if (username === null){
+        username = 'Qonaq'
         bestscore = ' (Funksiya Passivdir)'
         newscore = ' (Funksiya Passivdir)'
         totalscore = ' (Funksiya Passivdir)'
