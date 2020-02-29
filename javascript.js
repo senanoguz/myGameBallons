@@ -145,7 +145,7 @@ var users = JSON.parse(users)
     var bosalt
 
     function newbox() {
-        count = 200
+        count = 7000
         $('#gameoverimg').hide()
         $('#gameover').hide()
         $('.helps').hide()
@@ -216,7 +216,7 @@ var users = JSON.parse(users)
             $('#haqqinda').hide()
             setInterval(() => {
                 window.location.href = 'index.html'
-            }, 2000);
+            }, 4000);
         }
 
         setInterval(() => {
