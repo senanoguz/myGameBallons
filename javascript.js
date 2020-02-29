@@ -10,12 +10,12 @@ $(document).ready(function() {
     }
 
     var user = localStorage.getItem("username")
-        var users = localStorage.getItem('users')
-var users = JSON.parse(users)
+var users = localStorage.getItem('users')
+users = JSON.parse(users)
 var raiting = []
     if (user !== null){
     for (i = 0 ; i < users.length;i++){
-        console.log(users[i].bestscore)
+
     if(users[i].usernamereg === user){
     var current_user = i
     }
@@ -24,8 +24,6 @@ var raiting = []
     }
     raiting.push(users[i].bestscore)
 }
-
-
 
     var email = users[current_user].emailreg
     var level = users[current_user].level
