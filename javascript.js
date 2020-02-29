@@ -33,8 +33,6 @@ var raiting = []
   
     }
 
-
-
     var user = localStorage.getItem("username")
     var username = user
     if (username === null){
@@ -45,7 +43,7 @@ var raiting = []
         level = ' (Funksiya Passivdir)'
         $('#dovshan').css('height', '200px').css('width', '150px')
     }
-
+console.log(raiting.sort())
 
     function yoxlama(username, password, arr, email, level, bestscore, newscore, totalscore) {
         for (var i = 0; i < arr.length; i++) {
